@@ -5,10 +5,14 @@ in this repo, already include:
 
 -   [Bootstrap](https://getbootstrap.com).
 -   [laravel-adminlte by Jeroennoten](https://github.com/jeroennoten/Laravel-AdminLTE).
+-   [Basic Laravel Package Requirements](https://laravel.com).
 
 ## Featured Existed
 
 -   Authentication Scaffolding by Laravel (Login, Register, Verify Email, Forgot Password, etc).
+-   <code>config</code> AdminLTE by Jeroennoten.
+-   <code>assets</code> AdminLTE by Jeroennoten.
+-   <code>translations</code> AdminLTE by Jeroennoten.
 -   <code>main_views</code> AdminLTE by Jeroennoten.
 
 To configuration adminlte you can go to <code>app/config/adminlte.php</code>
