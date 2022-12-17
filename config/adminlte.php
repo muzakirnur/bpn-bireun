@@ -226,24 +226,26 @@ return [
 
     'menu' => [
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'admin',
+            'text'        => 'Dashboard',
+            'url'         => '/admin/dashboard',
+            'icon'        => 'fas fa-fw fa-home',
+            'label_color' => 'success',
+            'can'         => 'admin'
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => '#',
+            'url'         => '/user/dashboard',
             'icon'        => 'fas fa-fw fa-home',
-            'label'       => 4,
             'label_color' => 'success',
+            'can'         => 'user'
         ],
         [
-            'text'    => 'SERTIFIKAT',
+            'text'    => 'SERTIFIKAT TANAH',
             'icon'    => 'fas fa-fw fa-certificate',
             'submenu' => [
                 [
                     'text' => 'Data Sertifikat',
-                    'url'  => '#',
+                    'url'  => 'admin/sertifikat',
                 ],
                 [
                     'text' => 'Tambah Sertifikat',
