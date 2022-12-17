@@ -228,7 +228,7 @@ return [
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => 'admin',
         ],
         [
             'text'        => 'Dashboard',
