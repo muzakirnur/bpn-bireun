@@ -14,4 +14,10 @@ class SertifikatController extends Controller
         $sertifikat = Sertifikat::paginate(15);
         return view('layouts.admin.sertifikat.index', compact('page', 'sertifikat'));
     }
+
+    public function create()
+    {
+        $page = "Tambah Sertifikat Tanah";
+        return view('layouts.admin.sertifikat.create', compact('page'));
+    }
 }

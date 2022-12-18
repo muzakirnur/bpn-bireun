@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
 
         /* Route untuk Sertifikat Tanah */
         Route::get('sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
+        Route::get('sertifikat/create', [SertifikatController::class, 'create'])->name('sertifikat.create');
 
         /* Route Untuk Data Pemegang Hak */
         Route::get('pemegang-hak', [PemegangHakController::class, 'index'])->name('pemegang-hak.index');

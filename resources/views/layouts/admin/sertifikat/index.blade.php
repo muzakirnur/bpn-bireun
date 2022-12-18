@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 @section('content')
     <div class="card">
         <div class="card-body">
-            <button class="btn btn-primary mb-2">Tambah Sertifikat</button>
+            <button class="btn btn-primary mb-2"><i class="fas fa-fw fa-plus"></i> Tambah Sertifikat</button>
             <table class="table table-striped mb-2">
                 <thead>
                     <tr>
