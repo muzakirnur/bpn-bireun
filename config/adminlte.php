@@ -256,17 +256,17 @@ return [
         ['header' => 'DATA BERSANGKUTAN'],
         [
             'text' => 'PEMEGANG HAK',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/pemegang-hak',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'DASAR PENDAFTARAN',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/dasar-pendaftaran',
             'icon' => 'fas fa-fw fa-file-contract',
         ],
         [
             'text' => 'SURAT UKUR',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/surat-ukur',
             'icon' => 'fas fa-fw fa-envelope',
         ],
     ],

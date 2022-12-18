@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DasarPendaftaranController;
+use App\Http\Controllers\Admin\PemegangHakController;
 use App\Http\Controllers\Admin\SertifikatController;
+use App\Http\Controllers\Admin\SuratUkurController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -37,5 +40,14 @@ Route::middleware(['auth'])->group(function () {
 
         /* Route untuk Sertifikat Tanah */
         Route::get('sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
+
+        /* Route Untuk Data Pemegang Hak */
+        Route::get('pemegang-hak', [PemegangHakController::class, 'index'])->name('pemegang-hak.index');
+
+        /* Route untuk dasar Pendaftaran */
+        Route::get('dasar-pendaftaran', [DasarPendaftaranController::class, 'index'])->name('dasar-pendaftaran.index');
+
+        /* Route untuk Surat Ukur */
+        Route::get('surat-ukur', [SuratUkurController::class, 'index'])->name('surat-ukur.index');
     });
 });
