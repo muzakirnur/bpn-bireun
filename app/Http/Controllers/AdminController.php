@@ -8,6 +8,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('layouts.admin.dashboard');
+        $page = "Dashboard";
+        return view('layouts.admin.dashboard', compact('page'));
     }
 }

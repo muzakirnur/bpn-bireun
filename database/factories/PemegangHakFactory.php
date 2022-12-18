@@ -14,7 +14,8 @@ class PemegangHakFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nama' => $this->faker->name(),
+            'tanggal' => $this->faker->dateTimeThisDecade(),
         ];
     }
 }

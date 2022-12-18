@@ -13,8 +13,12 @@ class DasarPendaftaranFactory extends Factory
      */
     public function definition()
     {
+        $dasar = array('Daftar Isian 202', 'Surat Keputusan', 'Permohonan Pemecahan Bidang', 'Permohonan Pemisahan Bidang', 'Permohonan Penggabungan Bidang');
+        $rand = array_rand($dasar, 1);
         return [
-            //
+            'dasar' =>  strtoupper($dasar[$rand]),
+            'tanggal' => $this->faker->dateTimeThisDecade(),
+            'nomor' => $this->faker->randomNumber(3, true),
         ];
     }
 }

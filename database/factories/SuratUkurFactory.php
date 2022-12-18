@@ -14,7 +14,9 @@ class SuratUkurFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'tanggal' => $this->faker->dateTimeThisDecade(),
+            'nomor' => $this->faker->randomNumber(3, true),
+            'luas' => $this->faker->randomNumber(3, true)
         ];
     }
 }
