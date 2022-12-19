@@ -2,11 +2,13 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <button class="btn btn-primary mb-2"><i class="fas fa-fw fa-plus"></i> Tambah Sertifikat</button>
+            {{-- <a href="{{ route('admin.sertifikat.create') }}" class="btn btn-primary mb-2"><i class="fas fa-fw fa-plus"></i>
+                Tambah Sertifikat</a> --}}
             <table class="table table-striped mb-2">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nomor Sertifikat</th>
                         <th scope="col">Hak</th>
                         <th scope="col">Nomor</th>
                         <th scope="col">Provinsi</th>
@@ -20,6 +22,7 @@
                         <tr>
                             <th scope="row">
                                 {{ ($sertifikat->currentPage() - 1) * $sertifikat->perPage() + $loop->iteration }}</th>
+                            <td>{{ $s->nomor_sertifikat }}</td>
                             <td>{{ $s->hak }}</td>
                             <td>{{ $s->nomor }}</td>
                             <td>{{ $s->provinsi }}</td>

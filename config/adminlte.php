@@ -227,17 +227,9 @@ return [
     'menu' => [
         [
             'text'        => 'Dashboard',
-            'url'         => '/admin/dashboard',
+            'url'         => '/dashboard',
             'icon'        => 'fas fa-fw fa-home',
             'label_color' => 'success',
-            'can'         => 'admin'
-        ],
-        [
-            'text'        => 'Dashboard',
-            'url'         => '/user/dashboard',
-            'icon'        => 'fas fa-fw fa-home',
-            'label_color' => 'success',
-            'can'         => 'user'
         ],
         [
             'text'    => 'SERTIFIKAT TANAH',
@@ -245,28 +237,38 @@ return [
             'submenu' => [
                 [
                     'text' => 'Data Sertifikat',
-                    'url'  => 'admin/sertifikat',
+                    'url'  => 'sertifikat',
                 ],
                 [
                     'text' => 'Tambah Sertifikat',
-                    'url'  => 'admin/sertifikat/create',
+                    'url'  => 'sertifikat/create',
                 ],
             ],
         ],
         ['header' => 'DATA BERSANGKUTAN'],
         [
             'text' => 'PEMEGANG HAK',
-            'url'  => 'admin/pemegang-hak',
+            'url'  => 'pemegang-hak',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'DASAR PENDAFTARAN',
-            'url'  => 'admin/dasar-pendaftaran',
+            'url'  => 'dasar-pendaftaran',
             'icon' => 'fas fa-fw fa-file-contract',
         ],
         [
             'text' => 'SURAT UKUR',
-            'url'  => 'admin/surat-ukur',
+            'url'  => 'surat-ukur',
+            'icon' => 'fas fa-fw fa-envelope',
+        ],
+        [
+            'text' => 'PEMBUKUAN',
+            'url'  => 'pembukuan',
+            'icon' => 'fas fa-fw fa-envelope',
+        ],
+        [
+            'text' => 'PENERBITAN SERTIFIKAT',
+            'url'  => 'penerbitan-sertifikat',
             'icon' => 'fas fa-fw fa-envelope',
         ],
     ],

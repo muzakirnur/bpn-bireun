@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\DasarPendaftaran;
+use App\Models\Pembukuan;
 use App\Models\PemegangHak;
+use App\Models\PenerbitanSertifikat;
 use App\Models\Sertifikat;
 use App\Models\SuratUkur;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,6 +25,8 @@ class DetailSertifikatFactory extends Factory
         $dasar = DasarPendaftaran::factory()->create();
         $suratUkur = SuratUkur::factory()->create();
         $pemegangHak = PemegangHak::factory()->create();
+        $pembukuan = Pembukuan::factory()->create();
+        $penerbitan = PenerbitanSertifikat::factory()->create();
         return [
             'sertifikat_id' => $sertifikat->id,
             'nomor' => $sertifikat->nomor,
@@ -34,6 +38,8 @@ class DetailSertifikatFactory extends Factory
             'surat_ukur_id' => $suratUkur->id,
             'penunjuk' => $this->faker->title(),
             'pemegang_hak_id' => $pemegangHak->id,
+            'pembukuan_id' => $pembukuan->id,
+            'penerbitan_sertifikat_id' => $penerbitan->id,
         ];
     }
 }

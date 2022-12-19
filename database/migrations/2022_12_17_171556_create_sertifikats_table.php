@@ -15,6 +15,7 @@ class CreateSertifikatsTable extends Migration
     {
         Schema::create('sertifikats', function (Blueprint $table) {
             $table->id();
+            $table->string('nomor_sertifikat');
             $table->string('hak');
             $table->string('nomor');
             $table->string('provinsi');
