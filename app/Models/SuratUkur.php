@@ -9,6 +9,8 @@ class SuratUkur extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function detail_sertifikat()
     {
         return $this->hasMany(DetailSertifikat::class);

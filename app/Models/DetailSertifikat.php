@@ -9,6 +9,8 @@ class DetailSertifikat extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function dasar_pendaftaran()
     {
         return $this->belongsTo(DasarPendaftaran::class);

@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
     /* Route untuk Sertifikat Tanah */
     Route::get('sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
     Route::get('sertifikat/create', [SertifikatController::class, 'create'])->name('sertifikat.create');
+    Route::post('sertifikat/create', [SertifikatController::class, 'save'])->name('sertifikat.save');
+    Route::get('sertifikat/show/{id}', [SertifikatController::class, 'show'])->name('sertifikat.show');
+    Route::get('sertifikat/edit/{id}', [SertifikatController::class, 'edit'])->name('sertifikat.edit');
+    Route::put('sertifikat/edit/{id}/update', [SertifikatController::class, 'update'])->name('sertifikat.update');
 
     /* Route Untuk Data Pemegang Hak */
     Route::get('pemegang-hak', [PemegangHakController::class, 'index'])->name('pemegang-hak.index');

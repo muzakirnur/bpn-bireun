@@ -2,30 +2,67 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form>
+            <form action="{{ route('sertifikat.save') }}" method="POST">
+                @csrf
                 <div class="row">
                     <h3>SERTIFIKAT</h3>
                     <hr>
                     <div class="col-md-6 col-sm-12 xs-12">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">HAK</label>
-                            <select name="hak" id="hak" class="form-select">
+                            <select name="hak" id="hak" class="form-select @error('hak') is-invalid @enderror">
                                 <option value="">Pilih Hak</option>
-                                <option value="MILIK">HAK MILIK (SHM)</option>
-                                <option value="GUNA BANGUNAN">HAK GUNA BANGUNAN (HGB)</option>
-                                <option value="GUNA USAHA">HAK GUNA USAHA (HGU)</option>
-                                <option value="PAKAI">HAK PAKAI (HP)</option>
-                                <option value="ATAS SATUAN RUMAH SUSUN">HAK ATAS SATUAN RUMAH SUSUN (SHSRS)</option>
-                                <option value="TANAH GIRIK">TANAH GIRIK</option>
+                                <option value="MILIK" {{ old('hak') == 'MILIK' ? 'selected' : '' }}>HAK MILIK (SHM)
+                                </option>
+                                <option value="GUNA BANGUNAN" {{ old('hak') == 'GUNA BANGUNAN' ? 'selected' : '' }}>
+                                    HAK GUNA BANGUNAN (HGB)</option>
+                                <option value="GUNA USAHA" {{ old('hak') == 'GUNA USAHA' ? 'selected' : '' }}>HAK
+                                    GUNA USAHA (HGU)</option>
+                                <option value="PAKAI" {{ old('hak') == 'PAKAI' ? 'selected' : '' }}>HAK PAKAI (HP)
+                                </option>
+                                <option value="ATAS SATUAN RUMAH SUSUN"
+                                    {{ old('hak') == 'ATAS SATUAN RUMAH SUSUN' ? 'selected' : '' }}>HAK ATAS SATUAN
+                                    RUMAH SUSUN (SHSRS)</option>
+                                <option value="TANAH GIRIK" {{ old('hak') == 'TANAH GIRIK' ? 'selected' : '' }}>TANAH
+                                    GIRIK</option>
                             </select>
+                            @error('hak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NOMOR SERTIFIKAT</label>
-                            <input type="number" name="nomor_sertifikat" class="form-control" id="exampleInputPassword1">
+                            <input type="number" name="nomor_sertifikat"
+                                class="form-control @error('nomor_sertifikat') is-invalid @enderror"
+                                id="exampleInputPassword1" value="{{ old('nomor_sertifikat') }}">
+                            @error('nomor_sertifikat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NO</label>
-                            <input type="number" name="nomor" class="form-control" id="exampleInputPassword1">
+                            <input type="number" name="nomor" class="form-control @error('nomor') is-invalid @enderror"
+                                id="exampleInputPassword1" value="{{ old('nomor') }}">
+                            @error('nomor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Tanggal Berakhirnya Hak</label>
+                            <input type="date" name="tanggal_berakhir_hak"
+                                class="form-control @error('tanggal_berakhir_hak') is-invalid @enderror"
+                                id="exampleInputPassword1" value="{{ old('tanggal_berakhir_hak') }}">
+                            @error('tanggal_berakhir_hak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 xs-12">
@@ -37,24 +74,38 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">KABUPATEN/KOTA</label>
-                            <select class="form-select" name="provinsi" id="provinsi" disabled>
+                            <select class="form-select" name="kabupaten" id="kabupaten" disabled>
                                 <option value="BIREUN">BIREUN</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">KECAMATAN</label>
-                            <select class="form-select" name="kecamatan" id="kecamatan">
+                            <select class="form-select @error('kecamatan') is-invalid @enderror" name="kecamatan"
+                                id="kecamatan">
                                 <option value="">Pilih Kecamatan</option>
                                 @foreach ($kecamatan as $row)
-                                    <option value="{{ $row->code }}">{{ $row->name }}</option>
+                                    <option value="{{ $row->code }}"
+                                        {{ old('kecamatan') == $row->code ? 'selected' : '' }}>{{ $row->name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            @error('kecamatan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">DESA/KELURAHAN</label>
-                            <select class="form-select" name="desa" id="desa">
-                                <option value="">Pilih Desa/Kelurahan</option>
+                            <select class="form-select @error('kecamatan') is-invalid @enderror" name="desa"
+                                id="desa" required>
+                                <option value="" selected>Pilih Desa/Kelurahan</option>
                             </select>
+                            @error('desa')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -64,7 +115,13 @@
                         <hr>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NIB</label>
-                            <input type="number" name="nib" class="form-control" id="exampleInputPassword1">
+                            <input type="number" name="nib" class="form-control @error('nib') is-invalid @enderror"
+                                id="exampleInputPassword1" value="{{ old('nib') }}">
+                            @error('nib')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
@@ -72,14 +129,30 @@
                         <hr>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NIB</label>
-                            <select name="asal_hak" id="asal_hak" class="form-select">
+                            <select name="asal_hak" id="asal_hak"
+                                class="form-select @error('asal_hak') is-invalid @enderror">
                                 <option value="" selected>Pilih Asal Hak</option>
-                                <option value="Konversi">Konversi</option>
-                                <option value="Pemberian Hak">Pemberian Hak</option>
-                                <option value="Pemecahan Bidang">Pemecahan Bidang</option>
-                                <option value="Pemisahan Bidang">Pemisahan Bidang</option>
-                                <option value="Penggabungan Bidang">Penggabungan Bidang</option>
+                                <option value="Konversi" {{ old('asal_hak') == 'Konversi' ? 'selected' : '' }}>
+                                    Konversi</option>
+                                <option value="Pemberian Hak" {{ old('asal_hak') == 'Pemberian Hak' ? 'selected' : '' }}>
+                                    Pemberian Hak
+                                </option>
+                                <option value="Pemecahan Bidang"
+                                    {{ old('asal_hak') == 'Pemecahan Bidang' ? 'selected' : '' }}>Pemecahan Bidang
+                                </option>
+                                <option value="Pemisahan Bidang"
+                                    {{ old('asal_hak') == 'Pemisahan Bidang' ? 'selected' : '' }}>Pemisahan Bidang
+                                </option>
+                                <option value="Penggabungan Bidang"
+                                    {{ old('asal_hak') == 'Penggabungan Bidang' ? 'selected' : '' }}>Penggabungan
+                                    Bidang
+                                </option>
                             </select>
+                            @error('asal_hak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -89,22 +162,54 @@
                         <hr>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Dasar Pendaftaran</label>
-                            <select name="asal_hak" id="asal_hal" class="form-select">
+                            <select name="dasar_pendaftaran" id="dasar_pendaftaran"
+                                class="form-select @error('dasar_pendaftaran') is-invalid @enderror">
                                 <option value="" selected>Pilih Dasar Pendaftaaran</option>
-                                <option value="Daftar Isian 202">Daftar Isian 202</option>
-                                <option value="Surat Keputusan">Surat Keputusan</option>
-                                <option value="Permohonan Pemecahan Bidang">Permohonaan Pemecahan Bidang</option>
-                                <option value="Permohonan Pemisahan Bidang">Permohonaan Pemisahan Bidang</option>
-                                <option value="Permohonan Penggabungan Bidang">Permohonaan Penggabungan Bidang</option>
+                                <option value="Daftar Isian 202"
+                                    {{ old('dasar_pendaftaran') == 'Daftar Isian 202' ? 'selected' : '' }}>Daftar
+                                    Isian
+                                    202
+                                </option>
+                                <option value="Surat Keputusan"
+                                    {{ old('dasar_pendaftaran') == 'Surat Keputusan' ? 'selected' : '' }}>Surat
+                                    Keputusan</option>
+                                <option value="Permohonan Pemecahan Bidang"
+                                    {{ old('dasar_pendaftaran') == 'Permohonan Pemecahan Bidang' ? 'selected' : '' }}>
+                                    Permohonaan Pemecahan Bidang</option>
+                                <option value="Permohonan Pemisahan Bidang"
+                                    {{ old('dasar_pendaftaran') == 'Permohonan Pemisahan Bidang' ? 'selected' : '' }}>
+                                    Permohonaan Pemisahan Bidang</option>
+                                <option value="Permohonan Penggabungan Bidang"
+                                    {{ old('dasar_pendaftaran') == 'Permohonan Penggabungan Bidang' ? 'selected' : '' }}>
+                                    Permohonaan Penggabungan Bidang</option>
                             </select>
+                            @error('dasar_pendaftaran')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Tanggal</label>
-                            <input type="date" name="dasar_pendaftaran_tanggal" class="form-control">
+                            <input type="date" name="dasar_pendaftaran_tanggal"
+                                class="form-control @error('dasar_pendaftaran_tanggal') is-invalid @enderror"
+                                value="{{ old('dasar_pendaftaran_tanggal') }}">
+                            @error('dasar_pendaftaran_tanggal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">No</label>
-                            <input type="text" name="dasar_pendaftaran_nomor" class="form-control">
+                            <input type="number" name="dasar_pendaftaran_nomor"
+                                class="form-control @error('dasar_pendaftaran_nomor') is-invalid @enderror"
+                                value="{{ old('dasar_pendaftaran_nomor') }}">
+                            @error('dasar_pendaftaran_nomor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
@@ -112,18 +217,167 @@
                         <hr>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Tanggal</label>
-                            <input type="date" name="surat_ukur_tanggal" class="form-control">
+                            <input type="date" name="surat_ukur_tanggal"
+                                class="form-control @error('surat_ukur_tanggal') is-invalid @enderror"
+                                value="{{ old('surat_ukur_tanggal') }}">
+                            @error('surat_ukur_tanggal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">No</label>
-                            <input type="text" name="surat_ukur_nomor" class="form-control">
+                            <input type="number" name="surat_ukur_nomor"
+                                class="form-control @error('surat_ukur_nomor') is-invalid @enderror"
+                                value="{{ old('surat_ukur_nomor') }}">
+                            @error('surat_ukur_nomor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Luas (M2)</label>
-                            <input type="number" name="surat_ukur_luas" class="form-control">
+                            <input type="number" name="surat_ukur_luas"
+                                class="form-control @error('surat_ukur_luas') is-invalid @enderror"
+                                value="{{ old('surat_ukur_luas') }}">
+                            @error('surat_ukur_luas')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
+                <div class="row mt-5">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h3>PENUNJUK</h3>
+                        <hr>
+                        <div class="mb-3">
+                            <textarea name="penunjuk" id="myeditorinstance">{{ old('penunjuk') }}</textarea>
+                            @error('penunjuk')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h3>PEMEGANG HAK</h3>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Nama</label>
+                            <input type="text" name="nama_pemegang_hak"
+                                class="form-control @error('nama_pemegang_hak') is-invalid @enderror"
+                                value="{{ old('nama_pemegang_hak') }}">
+                            @error('nama_pemegang_hak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Tanggal Lahir/Akta Pendirian</label>
+                            <input type="date" name="tanggal_lahir"
+                                class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                value="{{ old('tanggal_lahir') }}">
+                            @error('tanggal_lahir')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h3>PEMBUKUAN SERTIFIKAT</h3>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="pembukuan_kota" class="form-label">Kota</label>
+                            <input type="text" name="pembukuan_kota" id="pembukuan_kota" value="BIREUN" disabled
+                                class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input class="form-control @error('pembukuan_tanggal') is-invalid @enderror" type="date"
+                                name="pembukuan_tanggal" id="pembukuan_tanggal" value="{{ old('pembukuan_tanggal') }}">
+                            @error('pembukuan_tanggal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Kepala Kantor Pertanahan</label>
+                            <input class="form-control @error('pembukuan_nama') is-invalid @enderror" type="text"
+                                name="pembukuan_nama" id="pembukuan_nama" value="{{ old('pembukuan_nama') }}">
+                            @error('pembukuan_nama')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">NIP</label>
+                            <input class="form-control @error('pembukuan_nip') is-invalid @enderror" type="number"
+                                name="pembukuan_nip" id="pembukuan_nip" value="{{ old('pembukuan_nip') }}">
+                            @error('pembukuan_nip')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <h3>PENERBITAN SERTIFIKAT</h3>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="pembukuan_kota" class="form-label">Kota</label>
+                            <input type="text" name="penerbitan_kota" id="penerbitan_kota" value="BIREUN" disabled
+                                class="form-control @error('penerbitan_kota') is-invalid @enderror">
+                            @error('penerbitan_kota')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input class="form-control @error('penerbitan_tanggal') is-invalid @enderror" type="date"
+                                name="penerbitan_tanggal" id="penerbitan_tanggal"
+                                value="{{ old('penerbitan_tanggal') }}">
+                            @error('penerbitan_tanggal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Kepala Kantor Pertanahan</label>
+                            <input class="form-control @error('penerbitan_nama') is-invalid @enderror" type="text"
+                                name="penerbitan_nama" id="penerbitan_nama" value="{{ old('penerbitan_nama') }}">
+                            @error('penerbitan_nama')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">NIP</label>
+                            <input class="form-control @error('penerbitan_nip') is-invalid @enderror" type="number"
+                                name="penerbitan_nip" id="penerbitan_nip" value="{{ old('penerbitan_nip') }}">
+                            @error('penerbitan_nip')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-save"></i>
+                    Simpan</button>
             </form>
         </div>
     </div>

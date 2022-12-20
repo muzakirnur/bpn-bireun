@@ -23,7 +23,7 @@ class CreateDetailSertifikatsTable extends Migration
             $table->string('asal_hak');
             $table->foreignId('dasar_pendaftaran_id')->constrained();
             $table->foreignId('surat_ukur_id')->constrained();
-            $table->string('penunjuk');
+            $table->longText('penunjuk')->nullable();
             $table->foreignId('pemegang_hak_id')->constrained();
             $table->foreignId('pembukuan_id')->constrained();
             $table->foreignId('penerbitan_sertifikat_id')->constrained();
