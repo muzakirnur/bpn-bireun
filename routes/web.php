@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-
+Route::get('sertifikat-tanah/{id}', [SertifikatController::class, 'detail'])->name('sertifikat.detail');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {

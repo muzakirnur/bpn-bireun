@@ -123,4 +123,12 @@ class SertifikatController extends Controller
         $array = str_split($detail->sertifikat->nomor_sertifikat);
         return view('layouts.admin.sertifikat.show', compact('page', 'detail', 'array'));
     }
+
+    public function detail($id)
+    {
+        $page = "Detail Sertifikat";
+        $detail = DetailSertifikat::where('sertifikat_id', $id)->first();
+        $array = str_split($detail->sertifikat->nomor_sertifikat);
+        return view('layouts.show', compact('page', 'detail', 'array'));
+    }
 }
