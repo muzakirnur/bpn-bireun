@@ -6,6 +6,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nomor Sertifikat</th>
                         <th scope="col">Kota</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Nama Kepala Kantor</th>
@@ -17,15 +18,16 @@
                         <tr>
                             <th scope="row">
                                 {{ ($pembukuan->currentPage() - 1) * $pembukuan->perPage() + $loop->iteration }}</th>
-                            <td>{{ $s->kota }}</td>
-                            <td>{{ $s->tanggal }}</td>
-                            <td>{{ $s->nama }}</td>
-                            <td>{{ $s->nip }}</td>
+                            <td>{{ $s->sertifikat->nomor_sertifikat }}</td>
+                            <td>{{ $s->pembukuan->kota }}</td>
+                            <td>{{ $s->pembukuan->tanggal }}</td>
+                            <td>{{ $s->pembukuan->nama }}</td>
+                            <td>{{ $s->pembukuan->nip }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $pembukuan->links() }}
         </div>
     </div>
+    {{ $pembukuan->links() }}
 @endsection

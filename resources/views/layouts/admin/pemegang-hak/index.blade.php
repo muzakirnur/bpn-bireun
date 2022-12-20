@@ -6,6 +6,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nomor Sertifikat</th>
                         <th scope="col">Nama Pemegang Hak</th>
                         <th scope="col">Tanggal Lahir/Akta Pendirian</th>
                     </tr>
@@ -15,13 +16,14 @@
                         <tr>
                             <th scope="row">
                                 {{ ($pemegang->currentPage() - 1) * $pemegang->perPage() + $loop->iteration }}</th>
-                            <td>{{ $s->nama }}</td>
-                            <td>{{ $s->tanggal }}</td>
+                            <td>{{ $s->sertifikat->nomor_sertifikat }}</td>
+                            <td>{{ $s->pemegang_hak->nama }}</td>
+                            <td>{{ $s->pemegang_hak->tanggal }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $pemegang->links() }}
         </div>
     </div>
+    {{ $pemegang->links() }}
 @endsection

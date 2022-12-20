@@ -28,9 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    /* Route Group Khusus Admin */
-    Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     /* Route untuk Sertifikat Tanah */
     Route::get('sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');

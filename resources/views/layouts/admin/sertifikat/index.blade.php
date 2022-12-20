@@ -33,7 +33,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $sertifikat->links() }}
         </div>
     </div>
+    {{ $sertifikat->links() }}
 @endsection

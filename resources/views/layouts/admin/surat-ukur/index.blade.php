@@ -6,6 +6,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nomor Sertifikat</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Nomor</th>
                         <th scope="col">Luas</th>
@@ -16,14 +17,15 @@
                         <tr>
                             <th scope="row">
                                 {{ ($suratUkur->currentPage() - 1) * $suratUkur->perPage() + $loop->iteration }}</th>
-                            <td>{{ $s->tanggal }}</td>
-                            <td>{{ $s->nomor }}</td>
-                            <td>{{ $s->luas }} M2</td>
+                            <td>{{ $s->sertifikat->nomor_sertifikat }}</td>
+                            <td>{{ $s->surat_ukur->tanggal }}</td>
+                            <td>{{ $s->surat_ukur->nomor }}</td>
+                            <td>{{ $s->surat_ukur->luas }} M2</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $suratUkur->links() }}
         </div>
     </div>
+    {{ $suratUkur->links() }}
 @endsection

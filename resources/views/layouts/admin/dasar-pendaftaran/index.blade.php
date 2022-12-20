@@ -6,6 +6,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nomor Sertifikat</th>
                         <th scope="col">Dasar Pendaftaran</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Nomor</th>
@@ -16,14 +17,15 @@
                         <tr>
                             <th scope="row">
                                 {{ ($dasar->currentPage() - 1) * $dasar->perPage() + $loop->iteration }}</th>
-                            <td>{{ $s->dasar }}</td>
-                            <td>{{ $s->tanggal }}</td>
-                            <td>{{ $s->nomor }}</td>
+                            <td>{{ $s->sertifikat->nomor_sertifikat }}</td>
+                            <td>{{ $s->dasar_pendaftaran->dasar }}</td>
+                            <td>{{ $s->dasar_pendaftaran->tanggal }}</td>
+                            <td>{{ $s->dasar_pendaftaran->nomor }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $dasar->links() }}
         </div>
     </div>
+    {{ $dasar->links() }}
 @endsection
