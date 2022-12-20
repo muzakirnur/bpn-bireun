@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SuratUkurController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PembukuanController;
 use App\Http\Controllers\PenerbitanSertifikatController;
+use App\Http\Controllers\VillageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -48,4 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* Route Untuk Penerbitan Sertifikat */
     Route::get('penerbitan-sertifikat', [PenerbitanSertifikatController::class, 'index'])->name('penerbitan.index');
+
+    /* Route untuk Mendapatkan Data Desa Berdasarkan Kecamatan */
+    Route::get('village', [VillageController::class, 'getVillage'])->name('village');
 });

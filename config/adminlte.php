@@ -264,12 +264,12 @@ return [
         [
             'text' => 'PEMBUKUAN',
             'url'  => 'pembukuan',
-            'icon' => 'fas fa-fw fa-envelope',
+            'icon' => 'fas fa-fw fa-book',
         ],
         [
             'text' => 'PENERBITAN SERTIFIKAT',
             'url'  => 'penerbitan-sertifikat',
-            'icon' => 'fas fa-fw fa-envelope',
+            'icon' => 'fas fa-fw fa-upload',
         ],
     ],
 
