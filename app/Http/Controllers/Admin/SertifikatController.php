@@ -116,9 +116,11 @@ class SertifikatController extends Controller
         return redirect()->route('sertifikat.index')->with('success', 'Data Sertifikat Berhasil ditambahkan');
     }
 
-    public function show()
+    public function show($id)
     {
-        $page = "Tambah Sertifikat Tanah";
-        return view('layouts.admin.sertifikat.create', compact('page', 'kecamatan'));
+        $page = "Detail Sertifikat";
+        $detail = DetailSertifikat::where('sertifikat_id', $id)->first();
+        $array = str_split($detail->sertifikat->nomor_sertifikat);
+        return view('layouts.admin.sertifikat.show', compact('page', 'detail', 'array'));
     }
 }
