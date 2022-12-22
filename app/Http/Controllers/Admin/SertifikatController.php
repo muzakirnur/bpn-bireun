@@ -131,4 +131,100 @@ class SertifikatController extends Controller
         $array = str_split($detail->sertifikat->nomor_sertifikat);
         return view('layouts.show', compact('page', 'detail', 'array'));
     }
+
+    public function edit($id)
+    {
+        $page = "Edit Sertifikat";
+        $kecamatan = DB::table('indonesia_districts')->where('city_code', 1111)->get();
+        $detailSertifikat = DetailSertifikat::where('sertifikat_id', $id)->first();
+        $valueKecamatan = DB::table('indonesia_districts')->where('name', $detailSertifikat->sertifikat->kecamatan)->first();
+        return view('layouts.admin.sertifikat.edit', compact('detailSertifikat', 'page', 'kecamatan', 'valueKecamatan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $provinsi = "ACEH";
+        $kota = "BIREUN";
+        $kecamatan = DB::table('indonesia_districts')->where('code', $request->kecamatan)->first();
+        $validated = $request->validate([
+            'hak' => ['required', 'string', 'max:255'],
+            'nomor_sertifikat' => ['required', 'digits:14'],
+            'nomor' => ['required', 'numeric'],
+            'tanggal_berakhir_hak' => ['required', 'date'],
+            'nib' => ['required', 'numeric'],
+            'desa' => ['required', 'string', 'max:255'],
+            'asal_hak' => ['required', 'string', 'max:255'],
+            'dasar_pendaftaran' => ['required', 'string', 'max:255'],
+            'dasar_pendaftaran_tanggal' => ['required', 'date'],
+            'dasar_pendaftaran_nomor' => ['required', 'numeric'],
+            'surat_ukur_tanggal' => ['required', 'date'],
+            'surat_ukur_nomor' => ['required', 'numeric'],
+            'surat_ukur_luas' => ['required', 'numeric'],
+            'nama_pemegang_hak' => ['required', 'string', 'max:255'],
+            'tanggal_lahir' => ['required', 'date'],
+            'pembukuan_tanggal' => ['required', 'date'],
+            'pembukuan_nama' => ['required', 'string', 'max:255'],
+            'pembukuan_nip' => ['required', 'numeric'],
+            'penerbitan_tanggal' => ['required', 'date'],
+            'penerbitan_nama' => ['required', 'string', 'max:255'],
+            'penerbitan_nip' => ['required', 'numeric']
+        ]);
+        $detailSertifikat = DetailSertifikat::findOrFail($id);
+        $sertifikat = Sertifikat::findOrFail($detailSertifikat->sertifikat_id);
+        $dasarPendaftaran = DasarPendaftaran::findOrFail($detailSertifikat->dasar_pendaftaran_id);
+        $suratUkur = SuratUkur::findOrFail($detailSertifikat->surat_ukur_id);
+        $pemegangHak = PemegangHak::findOrFail($detailSertifikat->pemegang_hak_id);
+        $pembukuan = Pembukuan::findOrFail($detailSertifikat->pembukuan_id);
+        $penerbitanSertifikat = PenerbitanSertifikat::findOrFail($detailSertifikat->penerbitan_sertifikat_id);
+        $sertifikat->update([
+            'nomor_sertifikat' => $validated['nomor_sertifikat'],
+            'hak' => $validated['hak'],
+            'nomor' => $validated['nomor'],
+            'provinsi' => $provinsi,
+            'kabupaten' => $kota,
+            'kecamatan' => $kecamatan->name,
+            'desa' => $validated['desa'],
+        ]);
+
+        $dasarPendaftaran->update([
+            'dasar' =>  $validated['dasar_pendaftaran'],
+            'tanggal' => $validated['dasar_pendaftaran_tanggal'],
+            'nomor' => $validated['dasar_pendaftaran_nomor'],
+        ]);
+
+        $suratUkur->update([
+            'tanggal' => $validated['surat_ukur_tanggal'],
+            'nomor' => $validated['surat_ukur_nomor'],
+            'luas' => $validated['surat_ukur_luas']
+        ]);
+
+        $pemegangHak->update([
+            'nama' => $validated['nama_pemegang_hak'],
+            'tanggal' => $validated['tanggal_lahir'],
+        ]);
+
+        $pembukuan->update([
+            'kota' => $kota,
+            'tanggal' => $validated['pembukuan_tanggal'],
+            'nama' => $validated['pembukuan_nama'],
+            'nip' => $validated['pembukuan_nip']
+        ]);
+
+        $penerbitanSertifikat->update([
+            'kota' => $kota,
+            'tanggal' => $validated['penerbitan_tanggal'],
+            'nama' => $validated['penerbitan_nama'],
+            'nip' => $validated['penerbitan_nip'],
+        ]);
+
+        $detailSertifikat->update([
+            'nomor' => $validated['nomor'],
+            'desa' => $validated['desa'],
+            'tgl_berakhir_hak' => $validated['tanggal_berakhir_hak'],
+            'nib' => $validated['nib'],
+            'asal_hak' => $validated['asal_hak'],
+            'penunjuk' => $request->penunjuk,
+        ]);
+        return redirect()->route('sertifikat.index')->with('success', 'Data Sertifikat Berhasil diupdate');
+    }
 }
