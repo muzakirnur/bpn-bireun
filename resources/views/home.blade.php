@@ -1,21 +1,57 @@
-@extends('adminlte::page')
+@extends('layouts.auth.app')
 
 @section('content')
-    <div class="row justify-content-center p-3">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{ $sertifikat }}</h3>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                        <p>Sertifikat</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-fw fa-certificate"></i>
+                    </div>
+                    <a href="#" class="small-box-footer text-dark">Tambah <i class="fa fa-plus"></i></a>
+                </div>
+            </div>
 
-                    {{ __('You are logged in!') }}
+            <!-- ./col -->
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $suratUkur }}</h3>
+
+                        <p>Surat Ukur</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-fw fa-envelope"></i>
+                    </div>
+                    <a href="#" class="small-box-footer text-dark">Lihat <i class="fas fa-fw fa-eye"></i></a>
+                </div>
+            </div>
+
+            <!-- ./col -->
+
+            <div class="col-lg-4 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $pemegangHak }}</h3>
+
+                        <p>Pemegang Hak</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-fw fa-users"></i>
+                    </div>
+                    <a href="#" class="small-box-footer text-dark">Lihat <i class="fas fa-fw fa-eye"></i></a>
                 </div>
             </div>
         </div>
-    </div>
+
+    </section>
 @endsection

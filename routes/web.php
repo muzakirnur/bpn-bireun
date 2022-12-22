@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('sertifikat/show/{id}', [SertifikatController::class, 'show'])->name('sertifikat.show');
     Route::get('sertifikat/edit/{id}', [SertifikatController::class, 'edit'])->name('sertifikat.edit');
     Route::put('sertifikat/edit/{id}/update', [SertifikatController::class, 'update'])->name('sertifikat.update');
+    Route::delete('sertifikat/delete', [SertifikatController::class, 'delete'])->name('sertifikat.delete');
 
     /* Route Untuk Data Pemegang Hak */
     Route::get('pemegang-hak', [PemegangHakController::class, 'index'])->name('pemegang-hak.index');

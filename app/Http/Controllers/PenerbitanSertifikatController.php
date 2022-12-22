@@ -11,7 +11,7 @@ class PenerbitanSertifikatController extends Controller
     public function index()
     {
         $page = "Data Penerbitan Sertifikat";
-        $penerbitan = DetailSertifikat::with('sertifikat', 'penerbitan_sertifikat')->paginate(15);
+        $penerbitan = DetailSertifikat::with('sertifikat', 'penerbitan_sertifikat')->latest()->paginate(15);
         return view('layouts.admin.penerbitan.index', compact('page', 'penerbitan'));
     }
 }

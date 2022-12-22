@@ -227,4 +227,17 @@ class SertifikatController extends Controller
         ]);
         return redirect()->route('sertifikat.index')->with('success', 'Data Sertifikat Berhasil diupdate');
     }
+
+    public function delete(Request $request)
+    {
+        $detail = DetailSertifikat::where('sertifikat_id', $request->id)->first();
+        $detail->delete();
+        Sertifikat::find($detail->sertifikat_id)->delete();
+        DasarPendaftaran::find($detail->dasar_pendaftaran_id)->delete();
+        SuratUkur::find($detail->surat_ukur_id)->delete();
+        PemegangHak::find($detail->pemegang_hak_id)->delete();
+        Pembukuan::find($detail->pembukuan_id)->delete();
+        PenerbitanSertifikat::find($detail->penerbitan_sertifikat_id)->delete();
+        return back()->with('success', 'Data Berhasil dihapus !');
+    }
 }

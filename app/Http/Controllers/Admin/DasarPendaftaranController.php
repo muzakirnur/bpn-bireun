@@ -13,7 +13,7 @@ class DasarPendaftaranController extends Controller
     public function index()
     {
         $page = "Dasar Pendaftaran";
-        $dasar = DetailSertifikat::with('sertifikat', 'dasar_pendaftaran')->paginate(15);
+        $dasar = DetailSertifikat::with('sertifikat', 'dasar_pendaftaran')->latest()->paginate(15);
         return view('layouts.admin.dasar-pendaftaran.index', compact('page', 'dasar'));
     }
 }

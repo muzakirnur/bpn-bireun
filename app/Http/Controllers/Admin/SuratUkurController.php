@@ -12,7 +12,7 @@ class SuratUkurController extends Controller
     public function index()
     {
         $page = "Data Surat Ukur";
-        $suratUkur = DetailSertifikat::with('sertifikat', 'surat_ukur')->paginate(15);
+        $suratUkur = DetailSertifikat::with('sertifikat', 'surat_ukur')->latest()->paginate(15);
         return view('layouts.admin.surat-ukur.index', compact('page', 'suratUkur'));
     }
 }

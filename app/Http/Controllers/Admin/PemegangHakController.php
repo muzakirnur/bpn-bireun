@@ -12,7 +12,7 @@ class PemegangHakController extends Controller
     public function index()
     {
         $page = "Data Pemegang Hak";
-        $pemegang = DetailSertifikat::with('sertifikat', 'pemegang_hak')->paginate(15);
+        $pemegang = DetailSertifikat::with('sertifikat', 'pemegang_hak')->latest()->paginate(15);
         return view('layouts.admin.pemegang-hak.index', compact('page', 'pemegang'));
     }
 }
